@@ -1,0 +1,4 @@
+{
+    "mongoUri": "mongodb+srv://aslnstbk:asln1234@cluster0-m6kuw.mongodb.net/dbposts?retryWrites=true&w=majority",
+    "jwtSecret": "mern-posts aslnstbk project"
+}

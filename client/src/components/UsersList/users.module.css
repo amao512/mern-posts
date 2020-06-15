@@ -1,0 +1,24 @@
+.usersList {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(120px, 1fr));
+    grid-gap: 10px;
+    text-align: center;
+}
+
+@media screen and (max-width: 768px){
+    .usersList {
+        padding: 5px;
+    }
+}
+
+@media screen and (max-width: 520px){
+    .usersList {
+        grid-template-columns: repeat(2, minmax(120px, 1fr));
+    }
+}
+
+@media screen and (max-width: 320px){
+    .usersList {
+        grid-template-columns: repeat(1, minmax(120px, 1fr));
+    }
+}

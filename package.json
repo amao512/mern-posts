@@ -1,0 +1,41 @@
+{
+  "name": "mern-posts",
+  "version": "1.0.0",
+  "description": "This project was created by using MERN stack",
+  "main": "server.js",
+  "scripts": {
+    "install-to-client": "npm install --prefix client",
+    "start": "cross-env NODE_ENV=production node server.js",
+    "server": "nodemon server.js",
+    "client": "npm start --prefix client",
+    "dev": "cross-env NODE_ENV=development concurrently \"npm run server\" \"npm run client\"",
+    "build": "cd client && npm run build",
+    "client-install": "cd client && npm install",
+    "heroku-postbuild": "npm run client-install && npm run build"
+  },
+  "author": "Asylzhan Seytbek <asyl.zed.han@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "config": "^3.3.1",
+    "cross-env": "^7.0.2",
+    "express": "^4.17.1",
+    "express-validator": "^6.5.0",
+    "http-proxy-middleware": "^1.0.4",
+    "jsonwebtoken": "^8.5.1",
+    "material-design-icons": "^3.0.1",
+    "mongoose": "^5.9.18"
+  },
+  "devDependencies": {
+    "concurrently": "^5.2.0",
+    "nodemon": "^2.0.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aslnstbk/mern-posts.git"
+  },
+  "bugs": {
+    "url": "https://github.com/aslnstbk/mern-posts/issues"
+  },
+  "homepage": "https://github.com/aslnstbk/mern-posts#readme"
+}

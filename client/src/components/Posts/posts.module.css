@@ -1,0 +1,43 @@
+.postsCreate {
+    padding: 8px 10px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 4px;
+    border: 1px solid rgba(0,0,0,.15);
+}
+
+.postsCreate a {
+    text-decoration: none;
+    border-radius: 4px;
+    width: 100%;
+    cursor: auto;
+}
+
+.postsCreate a input {
+  font-size: 18px;
+  padding: 6px;
+  border: none;
+  outline: none;
+}
+
+.postsCreate a:hover {
+    background-color: #fff;
+    color: #222;
+}
+
+@media screen and (max-width: 768px){
+  .posts {
+    padding: 0;
+    margin-bottom: 25px;
+  }
+
+  .postsCreate {
+    border: 0;
+    border-radius: 0;
+    margin-bottom: 10px;
+  }
+}
