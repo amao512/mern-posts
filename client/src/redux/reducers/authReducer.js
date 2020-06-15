@@ -27,7 +27,7 @@ export const authReducer = (state = initialState, action) => {
         case SET_AUTH_STORAGE:
             return {
                 ...state,
-                isAuth: !!action.payload.token,
+                isAuth: true,
                 token: action.payload.token,
                 userId: action.payload.userId,
                 error: null
