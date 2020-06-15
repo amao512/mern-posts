@@ -9,6 +9,7 @@ export const getAuthStorageThunk = () => dispatch => {
     const data = JSON.parse(localStorage.getItem(storageName))
     
     if(data && data.token){
+        console.log(data.message)
         return dispatch(setAuthStorage(data.token, data.userId))
     }
 }
@@ -18,6 +19,7 @@ export const authLoginThunk = userData => async dispatch => {
     const data = await AuthAPI.login(userData)
 
     if(data && data.message){
+        console.log(data.message)
         return dispatch(setAuthError(data.message))
     }
     
@@ -39,6 +41,7 @@ export const authRegisterThunk = userData => async dispatch => {
     const data = await AuthAPI.register(userData)
 
     if(data && data.message){
+        console.log(data.message)
         return dispatch(setAuthError(data.message))
     }
 
@@ -51,6 +54,7 @@ export const getAuthDataThunk = () => async dispatch => {
     const data = await AuthAPI.getAuth(storageData && storageData.token)
 
     if(data && data.message){
+        console.log(data.message)
         return dispatch(setAuthError(data.message))
     }
 
