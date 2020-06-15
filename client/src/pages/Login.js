@@ -20,9 +20,9 @@ const Login = ({ error, clearAuthError, authLoginThunk, isAuth, ...props }) => {
     const onSubmit = e => {
         e.preventDefault()
 
-        clearAuthError()
         setFormError(null)
         authLoginThunk(form)
+        clearAuthError()
 
         if(isAuth){
             props.history.push('/feed')
