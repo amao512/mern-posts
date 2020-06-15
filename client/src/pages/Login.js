@@ -3,10 +3,10 @@ import { SignInUp, Form } from '../components/styled-components/form.styled'
 import { Link } from 'react-router-dom'
 import { Error } from '../components/styled-components/error.styled'
 import { connect } from 'react-redux'
-import { authLoginThunk } from '../redux/thunks/authThunks'
+import { authLoginThunk, getAuthDataThunk } from '../redux/thunks/authThunks'
 import { clearAuthError } from '../redux/actions/authActions'
  
-const Login = ({ error, clearAuthError, authLoginThunk, isAuth, ...props }) => {
+const Login = ({ error, clearAuthError, authLoginThunk, isAuth, getAuthDataThunk, ...props }) => {
     
     const [form, setForm] = useState({ email: '', password: '' })
     const [formError, setFormError] = useState(null)
@@ -22,6 +22,7 @@ const Login = ({ error, clearAuthError, authLoginThunk, isAuth, ...props }) => {
 
         setFormError(null)
         authLoginThunk(form)
+        getAuthDataThunk()
         clearAuthError()
 
         if(isAuth){
@@ -73,4 +74,4 @@ const mstp = state => ({
     isAuth: state.auth.isAuth
 })
 
-export default connect(mstp, { clearAuthError, authLoginThunk })(Login)
+export default connect(mstp, { clearAuthError, authLoginThunk, getAuthDataThunk })(Login)
