@@ -1,6 +1,6 @@
 export const LOGIN_AUTH = 'LOGIN_AUTH'
 export const LOGOUT_AUTH = 'LOGOUT_AUTH'
-export const SET_AUTH_ERROR = 'SET_ERROR'
+export const SET_AUTH_ERROR = 'SET_AUTH_ERROR'
 export const CLEAR_AUTH_ERROR = 'CLEAR_ERROR'
 export const GET_AUTH_DATA = 'GET_AUTH_DATA'
 export const SET_AUTH_STORAGE = 'SET_AUTH_STORAGE'
