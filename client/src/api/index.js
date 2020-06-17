@@ -1,62 +1,77 @@
-const request = async (url, method, body = null, headers = {}, token = null) => {
-    try {
-        headers['Content-Type'] = 'application/json'
+import axios from 'axios'
+// const request = async (url, method, body = null, headers = {}, token = null) => {
+//     try {
+//         headers['Content-Type'] = 'application/json'
 
-        if(body){
-            body = JSON.stringify(body)
-            headers['Content-Type'] = 'application/json'
-        }
+//         if(body){
+//             body = JSON.stringify(body)
+//             headers['Content-Type'] = 'application/json'
+//         }
 
-        if(token){
-            headers['Content-Type'] = 'application/json'
-            headers['auth-token'] = token
-        }
+//         if(token){
+//             headers['Content-Type'] = 'application/json'
+//             headers['auth-token'] = token
+//         }
 
-        const res = await fetch(url, { method, body, headers })
-        const data = await res.json()
+//         const res = await fetch(url, { method, body, headers })
+//         const data = await res.json()
 
-        if(!res.ok){
-            throw new Error(data.message)
-        }
+//         if(!res.ok){
+//             throw new Error(data.message)
+//         }
         
-        return data
-    } catch (e) {
-        return e
-    }
-}
+//         return data
+//     } catch (e) {
+//         return e
+//     }
+// }
+
+const instance = axios.create({
+    baseUrl: 'http://localhost:5000',
+    headers: { 'Content-Type': 'application/json' }
+})
 
 export const AuthAPI = {
     async login(userData){
-        return await request('/api/auth/login', 'POST', userData)
+        const res = await instance.post('/api/auth/login', userData)
+        return res.data
     },
     async register(userData){
-        return await request('/api/auth/register', 'POST', userData)
+        const res = await instance.post('/api/auth/register', userData)
+        return res.data
     },
     async getAuth(token){
-        return await request('/api/auth', 'GET', null, {}, token)
+        const res = await instance.get('/api/auth', { headers: { 'auth-token': token } })
+        return res.data
     }
 }
 
 export const PostsAPI = {
-    async get(token = null){
-        return await request(token ? '/api/posts/own' : '/api/posts', 'GET', null, {}, token)
+    async get(){
+        const res = await instance.get('/api/posts')
+        return res.data
     },
     async create(postData, token){
-        return await request('/api/posts/create', 'POST', postData, {}, token)
+        const res = await instance.post('/api/posts/create', postData, { headers: { 'auth-token': token } })
+        return res.data
     },
     async delete(postId, token){
-        return await request(`/api/posts/delete/${postId}`, 'DELETE', null, {}, token)
+        const res = await instance.delete(`/api/posts/delete/${postId}`, { headers: { 'auth-token': token } })
+        return res.data
     },
     async update(postData, token){
-        return await request(`/api/posts/update/${postData._id}`, 'PUT', postData, {}, token)
+        const res = await instance.put(`/api/posts/update/${postData._id}`, postData, { headers: { 'auth-token': token } })
+        return res.data
     },
     async getOne(id){
-        return await request(`/api/posts/${id}`, 'GET')
+        const res = await instance.get(`/api/posts/${id}`)
+        return res.data
     }
 }
 
 export const UsersAPI = {
     async get(){
-        return await request('/api/user', 'GET')
+        const res = await instance.get('/api/user')
+        return res.data
     }
 }
