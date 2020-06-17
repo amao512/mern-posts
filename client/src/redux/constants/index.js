@@ -12,3 +12,6 @@ export const CLEAR_DATA = 'CLEAR_DATA'
 export const UPDATE_POST = 'EDIT_POST'
 
 export const GET_USERS = 'GET_USERS'
+
+export const GET_COMMENTS = 'GET_COMMENTS'
+export const ADD_COMMENT = 'ADD_COMMENT'

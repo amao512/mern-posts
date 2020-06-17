@@ -75,3 +75,14 @@ export const UsersAPI = {
         return res.data
     }
 }
+
+export const CommentsAPI = {
+    async get(){
+        const res = await instance.get('/api/comments/')
+        return res.data
+    },
+    async create(comment, postId, token){
+        const res = await instance.post(`/api/comments/create/${postId}`, comment, { headers: { 'auth-token': token } })
+        return res.data
+    }
+}

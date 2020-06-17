@@ -43,4 +43,4 @@ const Posts = memo(({ posts, isAdmin = true }) => {
     )
 })
 
-export default Posts
+export default  Posts

@@ -3,10 +3,11 @@ import { connect } from 'react-redux'
 import { deletePostThunk } from '../redux/thunks/postsThunk'
 import Post from '../components/Post'
 import Preloader from '../components/Preloader/Preloader'
+import { getCommentsThunk } from '../redux/thunks/commentsThunk'
 
-const PostContainer = ({ post, admin, users, deletePostThunk, token, isReading = false }) => {
-    const [isAdmin, setIsAdmin] = useState(false)
+const PostContainer = ({ post, users, deletePostThunk, token, userId, isReading = false, comments, getCommentsThunk }) => {
     const [user, setUser] = useState(null)
+    const [certainComments, setCertainComments] = useState([])
 
     const onDeletePost = () => {
         deletePostThunk(post._id, token)
@@ -17,23 +18,31 @@ const PostContainer = ({ post, admin, users, deletePostThunk, token, isReading =
     }, [users, post])
 
     useEffect(() => {
-        setIsAdmin((admin && admin._id) === (user && user._id))
-    }, [user, admin])
-    
+        setCertainComments(comments && comments.filter(comment => comment.post === post._id))
+    }, [comments, post])
 
-    const nextProps = { post, admin, isAdmin, user, onDeletePost, isReading }
+    useEffect(() => {
+        getCommentsThunk()
+    }, [getCommentsThunk])
 
     if(!post){
         return <Preloader />
     }
 
-    return <Post {...nextProps} />
+    return <Post post={post} 
+                 isAdmin={post.owner === userId} 
+                 user={user} 
+                 onDeletePost={onDeletePost} 
+                 isReading={isReading}
+                 comments={certainComments}
+            />
 }
 
 const mstp = state => ({
-    admin: state.auth.user,
     token: state.auth.token,
-    users: state.user.users
+    users: state.user.users,
+    userId: state.auth.userId,
+    comments: state.comment.comments
 })
 
-export default connect(mstp, { deletePostThunk })(PostContainer)
+export default connect(mstp, { deletePostThunk, getCommentsThunk })(PostContainer)

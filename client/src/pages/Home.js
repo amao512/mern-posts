@@ -3,7 +3,7 @@ import Posts from '../components/Posts/Posts'
 import { getPostsThunk } from '../redux/thunks/postsThunk'
 import { connect } from 'react-redux'
 
-const Home = ({ posts, getPostsThunk }) => {
+const Home = ({ posts, getPostsThunk, getCommentsThunk }) => {
   
     useEffect(() => {
         if(!posts){
