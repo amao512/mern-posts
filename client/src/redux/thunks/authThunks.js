@@ -51,7 +51,7 @@ export const authRegisterThunk = userData => async dispatch => {
 // Get admin data GET /api/auth/
 export const getAuthDataThunk = () => async dispatch => {
     const storageData = await JSON.parse(localStorage.getItem(storageName))
-    const data = await AuthAPI.getAuth(storageData.token)
+    const data = await AuthAPI.getAuth(storageData && storageData.token)
 
     if(data && data.message){
         console.log(data.message)

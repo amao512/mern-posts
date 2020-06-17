@@ -19,7 +19,7 @@ const Posts = memo(({ posts, isAdmin = true }) => {
         setFoundPosts(posts)
     }, [posts])
 
-    if(!posts){
+    if(!foundPosts){
         return <Preloader />
     }
 
