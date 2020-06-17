@@ -1,7 +1,8 @@
 const request = async (url, method, body = null, headers = {}, token = null) => {
     try {
+        headers['Content-Type'] = 'application/json'
+
         if(body){
-            console.log(1)
             body = JSON.stringify(body)
             headers['Content-Type'] = 'application/json'
         }
