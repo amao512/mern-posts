@@ -27,7 +27,7 @@ import axios from 'axios'
 // }
 
 const instance = axios.create({
-    baseUrl: 'https://mern-posts.herokuapp.com',
+    baseUrl: 'http://localhost:5000',
     headers: { 'Content-Type': 'application/json' }
 })
 
