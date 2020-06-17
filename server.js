@@ -2,7 +2,6 @@ const express = require('express')
 const mongoose = require('mongoose')
 const config = require('config')
 const path = require('path')
-const httpProxy = require('http-proxy')
 
 const app = express()
 const PORT = process.env.PORT || 5000
@@ -19,17 +18,7 @@ const connectDB = async () => {
         })
 
         console.log('MongoDB connected...')
-
-        app.listen(PORT, () => {
-            httpProxy.createProxyServer({
-                target: 'http://mern-posts.herokuapp.com',
-                toProxy: true,
-                changeOrigin: true,
-                xfwd: true
-            });
-
-            console.log('Server started...')
-        })
+        app.listen(PORT, () => console.log('Server started...'))
     } catch (e) {
         console.log(e.message)
         process.exit()

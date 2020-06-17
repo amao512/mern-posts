@@ -5,13 +5,14 @@ const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
 const config = require('config')
 const auth = require('../middleware/auth')
+const header = require('../middleware/header')
 
 const User = require('../models/User')
 
 // @ POST /api/auth/register
 // Register user
 
-router.post('/register', [
+router.post('/register', header, [
     check('name', 'Please type the name').notEmpty(),
     check('lastName', 'Please type the last name').notEmpty(),
     check('email', 'Please type the valid email').isEmail(),
@@ -55,7 +56,7 @@ router.post('/register', [
 // @ POST /api/auth/login
 // Login to system
 
-router.post('/login', [
+router.post('/login', header, [
     check('email', 'Please type the valid email').isEmail(),
     check('password', 'Please type the valid password').exists()
 ], async (req, res) => {
@@ -97,7 +98,7 @@ router.post('/login', [
 // @ GET /api/auth
 // Get user-admin data
 
-router.get('/', auth, async (req, res) => {
+router.get('/', auth, header, async (req, res) => {
     try {
         const user = await User.findById(req.user.userId).select('-password')
 
