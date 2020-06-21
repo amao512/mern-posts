@@ -1,23 +1,24 @@
 import React, { useEffect } from 'react'
 import Navbar from '../components/Navbar'
 import { connect } from 'react-redux'
-import { authLogoutThunk, getAuthDataThunk } from '../redux/thunks/authThunks'
+import { authLogoutThunk } from '../redux/thunks/authThunks'
+import { getProfileDataThunk } from '../redux/thunks/profileThunks'
 
-const NavbarContainer = ({ user, authLogoutThunk, getAuthDataThunk }) => {
+const NavbarContainer = ({ profile, authLogoutThunk, getAuthDataThunk }) => {
 
     useEffect(() => {
-        if(!user){
-            getAuthDataThunk()
+        if(!profile){
+            getProfileDataThunk()
         }
-    }, [getAuthDataThunk, user])
+    }, [profile])
 
-    const nextProps = { authLogoutThunk, user }
+    const nextProps = { authLogoutThunk, profile }
 
     return <Navbar {...nextProps} />
 }
 
 const mstp = state => ({
-    user: state.auth.user
+    profile: state.profile.data
 })
 
-export default connect(mstp, { authLogoutThunk, getAuthDataThunk })(NavbarContainer)
+export default connect(mstp, { authLogoutThunk, getProfileDataThunk })(NavbarContainer)

@@ -11,6 +11,10 @@ const SinglePost = ({ posts, getOnePostThunk, comments, getCommentsThunk }) => {
     const postId = useParams().postId
     const [certainPost, setCertainPost] = useState(null)
     const [certainComments, setCertainComments] = useState([])
+
+    useEffect(() => {
+        getOnePostThunk(postId)
+    }, [getOnePostThunk, postId])
     
     useEffect(() => {
         setCertainPost(posts && posts.find(post => post._id === postId))
@@ -18,15 +22,11 @@ const SinglePost = ({ posts, getOnePostThunk, comments, getCommentsThunk }) => {
 
     useEffect(() => {
         getCommentsThunk()
-    }, [getCommentsThunk, comments])
+    }, [getCommentsThunk])
 
     useEffect(() => {
         setCertainComments(comments && comments.filter(comment => comment.post === postId))
     }, [comments, postId])
-
-    useEffect(() => {
-        getOnePostThunk(postId)
-    }, [getOnePostThunk, postId])
 
     if(!certainPost){
         return <Preloader/>

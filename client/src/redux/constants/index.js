@@ -15,3 +15,9 @@ export const GET_USERS = 'GET_USERS'
 
 export const GET_COMMENTS = 'GET_COMMENTS'
 export const ADD_COMMENT = 'ADD_COMMENT'
+
+export const GET_PROFILE_DATA = 'GET_PROFILE_DATA'
+
+export const GET_FILES = 'GET_FILES'
+export const DELETE_FILE = 'DELETE_FILE'
+export const UPLOAD_IMAGE = 'UPLOAD_IMAGE'

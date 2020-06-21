@@ -1,8 +1,7 @@
-import { LOGIN_AUTH, LOGOUT_AUTH, GET_AUTH_DATA, SET_AUTH_ERROR, CLEAR_AUTH_ERROR, SET_AUTH_STORAGE } from "../constants"
+import { LOGIN_AUTH, LOGOUT_AUTH, SET_AUTH_ERROR, CLEAR_AUTH_ERROR, SET_AUTH_STORAGE } from "../constants"
 
 const initialState = {
     isAuth: false,
-    user: null,
     token: null,
     userId: null,
     error: null
@@ -20,7 +19,6 @@ export const authReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isAuth: false,
-                user: null,
                 token: null,
                 userId: null
             }
@@ -31,13 +29,6 @@ export const authReducer = (state = initialState, action) => {
                 token: action.payload.token,
                 userId: action.payload.userId,
                 error: null
-            }
-        case GET_AUTH_DATA:
-            return { 
-                ...state,
-                isAuth: true,
-                user: action.payload, 
-                error: null 
             }
         case SET_AUTH_ERROR:
             return {

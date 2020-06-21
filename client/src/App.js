@@ -3,20 +3,21 @@ import './App.css'
 import Header from './components/Header'
 import NavbarContainer from './containers/NavbarContainer'
 import { connect } from 'react-redux'
-import { getAuthStorageThunk, getAuthDataThunk } from './redux/thunks/authThunks'
+import { getAuthStorageThunk } from './redux/thunks/authThunks'
 import Routes from './components/Routes'
 import { getUsersThunk } from './redux/thunks/usersThunk'
 import { getPostsThunk } from './redux/thunks/postsThunk'
+import { getProfileDataThunk } from './redux/thunks/profileThunks'
 
-const App = ({ isAuth, getAuthStorageThunk, getUsersThunk, getPostsThunk, getAuthDataThunk }) => {
+const App = ({ isAuth, getAuthStorageThunk, getUsersThunk, getPostsThunk, getProfileDataThunk }) => {
 
   useEffect(() => {
     getAuthStorageThunk()
   }, [getAuthStorageThunk])
 
   useEffect(() => {
-    getAuthDataThunk()
-  }, [getAuthDataThunk])
+    getProfileDataThunk()
+  }, [getProfileDataThunk])
 
   useEffect(() => {
     getUsersThunk()
@@ -43,4 +44,4 @@ const mstp = state => ({
   isAuth: state.auth.isAuth
 })
 
-export default connect(mstp, { getAuthStorageThunk, getUsersThunk, getPostsThunk, getAuthDataThunk })(App)
+export default connect(mstp, { getAuthStorageThunk, getUsersThunk, getPostsThunk, getProfileDataThunk })(App)

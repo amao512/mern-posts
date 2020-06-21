@@ -22,10 +22,72 @@ export const ProfileBlock = styled.div`
             border-radius: 50%;
             width: 150px;
             height: 150px;
+            overflow: hidden;
+            cursor: pointer;
             img {
                 width: 100%;
+                height: 100%;
+                z-index: 1;
+                background-position: center;
+                background-size: cover;
+            }
+
+            .choose-img {
+                background-color: #222;
+                color: #fff;
+                position: absolute;
+                top: 50px;
+                right: 0;
+                left: 0;
+                bottom: 0;
+                transform: translateY(100px);
+                transition: all .2s ease;
+                cursor: pointer;
+                span {
+                    font-size: 30px;
+                    margin-top: 5px;
+                }
+            }
+
+            &:hover {
+                .choose-img {
+                    transform: translateY(50px)
+                }
             }
         }
+
+        .settings {
+            position: absolute;
+            top: 0;
+            right: 0;
+
+            span {
+
+            }
+
+            ul {
+                position: absolute;
+                top: 20px;
+                right: 10px;
+                display: none;
+                transition: all .2s ease;
+                background-color: #fff;
+                color: #222;
+                list-style: none;
+                padding: 0;
+
+                li {
+                    padding: 10px;
+                }
+            }
+
+            &:hover {
+                ul {
+                    display: block;
+                }
+            }
+        }
+
         .name {
             padding: 10px 5px 0;
             p {

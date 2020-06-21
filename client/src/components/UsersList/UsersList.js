@@ -5,6 +5,7 @@ import s from './users.module.css'
 import Preloader from '../Preloader/Preloader'
 import { NavLink } from 'react-router-dom'
 import { Search } from '../styled-components/search.styled'
+import UserPhoto from '../UserPhoto'
 
 const UsersList = ({ users, onSearch }) => {
     return (
@@ -16,7 +17,7 @@ const UsersList = ({ users, onSearch }) => {
                 <UserCard key={user && user._id}>
                     <NavLink to={user && `/profile/${user._id}`}>
                         <div className='user-img'>
-                            <img src={UserImg} alt='user-img' />
+                            <UserPhoto owner={user && user._id} />
                         </div>
 
                         <div className='name'>

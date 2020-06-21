@@ -5,14 +5,13 @@ const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
 const config = require('config')
 const auth = require('../middleware/auth')
-const header = require('../middleware/header')
 
 const User = require('../models/User')
 
 // @ POST /api/auth/register
 // Register user
 
-router.post('/register', header, [
+router.post('/register', [
     check('name', 'Please type the name').notEmpty(),
     check('lastName', 'Please type the last name').notEmpty(),
     check('email', 'Please type the valid email').isEmail(),
@@ -56,7 +55,7 @@ router.post('/register', header, [
 // @ POST /api/auth/login
 // Login to system
 
-router.post('/login', header, [
+router.post('/login', [
     check('email', 'Please type the valid email').isEmail(),
     check('password', 'Please type the valid password').exists()
 ], async (req, res) => {
@@ -95,15 +94,27 @@ router.post('/login', header, [
     }
 })
 
-// @ GET /api/auth
-// Get user-admin data
+// @ PUT /api/auth/uploadImg
+// Set an image
 
-router.get('/', auth, header, async (req, res) => {
+router.put('/uploadImg', auth, async (req, res) => {
     try {
-        const user = await User.findById(req.user.userId).select('-password')
 
-        res.json(user)
-    } catch (e){
+        const { imgForm } = req.body
+
+        const user = User.findById(req.user.userId)
+
+        if(!user){
+            return res.status(404).json({ message: 'User Not Found!' })
+        }
+
+        user = await User.findByIdAndUpdate(req.user.userId, { $set: { ...user, image: imgForm } }, { new: true })
+
+        await user.save()
+
+        res.json({ message: 'Image set successfully' })
+
+    } catch (e) {
         console.log(e.message)
         res.status(500).json({ message: 'Server Error: Something is wrong!' })
     }

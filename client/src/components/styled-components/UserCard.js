@@ -15,9 +15,15 @@ export const UserCard = styled.div`
 
     .user-img {
         width: 80px;
+        height: 80px;
         margin: 0 auto;
+        border-radius: 50%;
+        overflow: hidden;
         img {
             width: 100%;
+            height: 100%;
+            background-position: center;
+            background-size: 100%;
         }
     }
 

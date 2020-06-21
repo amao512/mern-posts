@@ -1,4 +1,4 @@
-import { setAuthError, authLogin, getAuthData, authLogout, setAuthStorage } from "../actions/authActions"
+import { setAuthError, authLogin, authLogout, setAuthStorage } from "../actions/authActions"
 import { AuthAPI } from "../../api"
 import { clearData } from "../actions/postsActions"
 
@@ -46,18 +46,4 @@ export const authRegisterThunk = userData => async dispatch => {
     }
 
     return dispatch(authLoginThunk({ email: userData.email, password: userData.password }))
-}
-
-// Get admin data GET /api/auth/
-export const getAuthDataThunk = () => async dispatch => {
-    const storageData = await JSON.parse(localStorage.getItem(storageName))
-    const data = await AuthAPI.getAuth(storageData && storageData.token)
-
-    if(data && data.message){
-        console.log(data.message)
-        return dispatch(setAuthError(data.message))
-    }
-
-    return dispatch(getAuthData(data))
-   
 }

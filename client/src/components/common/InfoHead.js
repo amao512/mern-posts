@@ -1,15 +1,17 @@
 import React from 'react'
 import { InfoHeadStyled } from '../styled-components/InfoHead.styled'
 import { NavLink } from 'react-router-dom'
-import userPhoto from '../../assets/images/profile.png'
+import UserPhoto from '../UserPhoto'
 
 const InfoHead = ({ isAdmin, user, info, onDelete }) => {
     return (
         <InfoHeadStyled>
             <div className='author'>
-                <NavLink to={isAdmin ? '/profile' : `/profile/${user && user._id}`}>
-                    <img src={userPhoto} alt='user-img' />
-                </NavLink>
+                <div className='photo'>
+                    <NavLink to={isAdmin ? '/profile' : `/profile/${user && user._id}`}>
+                        <UserPhoto owner={user && user._id} />
+                    </NavLink>
+                </div>
 
                 <div className='info'>
                     <NavLink to={isAdmin ? '/profile' : `/profile/${user && user._id}`}>

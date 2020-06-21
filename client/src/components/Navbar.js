@@ -2,7 +2,7 @@ import React from 'react'
 import { NavbarStyled } from './styled-components/navbar.styled'
 import { NavLink } from 'react-router-dom'
 
-const Navbar = ({ user, authLogoutThunk }) => {
+const Navbar = ({ profile, authLogoutThunk }) => {
     return (
         <div className='navbar'>
             <NavbarStyled>
@@ -10,7 +10,7 @@ const Navbar = ({ user, authLogoutThunk }) => {
                     <li className='profile'>
                         <NavLink to='/profile' activeClassName='active-link'>
                             <span className="material-icons">account_circle</span>
-                            <p>{user ? `${user.name} ${user.lastName}` : 'Profile'}</p>
+                            <p>{profile ? `${profile.name} ${profile.lastName}` : 'Profile'}</p>
                         </NavLink>
                     </li>
                     <li>

@@ -19,7 +19,7 @@ const Comments = ({ comments, postId, token, createCommentThunk, getCommentsThun
 
     useEffect(() => {
         getCommentsThunk()
-    }, [getCommentsThunk, comments])
+    }, [getCommentsThunk])
 
     return (
         <div className={s.comments}>

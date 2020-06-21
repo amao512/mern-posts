@@ -2,14 +2,13 @@ const Router = require('express')
 const router = Router()
 const auth = require('../middleware/auth')
 const { check, validationResult } = require('express-validator')
-const header = require('../middleware/header')
 
 const Post = require('../models/Post')
 
 // @ GET /api/posts
 // Get all posts of other users
 
-router.get('/', header, async (req, res) => {
+router.get('/', async (req, res) => {
     try {
         const posts = await Post.find().sort({ date: -1 })
 
@@ -23,7 +22,7 @@ router.get('/', header, async (req, res) => {
 // @ GET /api/posts/own
 // Get posts by token
 
-router.get('/own', auth, header, async (req, res) => {
+router.get('/own', auth, async (req, res) => {
     try {
         const posts = await Post.find({ owner: req.user.userId }).sort({ date: -1 })
 
@@ -41,7 +40,7 @@ router.get('/own', auth, header, async (req, res) => {
 // @ POST /api/posts/create
 // Create a post
 
-router.post('/create', header, [
+router.post('/create', [
     check('title', 'Please, fill the title').notEmpty(),
     check('text', 'Please, fill the text').notEmpty()
 ], auth, async (req, res) => {
@@ -70,7 +69,7 @@ router.post('/create', header, [
 // @ GET /api/posts/:id
 // Get post
 
-router.get('/:id', header, async (req, res) => {
+router.get('/:id', async (req, res) => {
     try {
         const p = await Post.findById(req.params.id)
 
@@ -92,7 +91,7 @@ router.get('/:id', header, async (req, res) => {
 // @ PUT /api/posts/update/:id
 // Update a post
 
-router.put('/update/:id', auth, header, async (req, res) => {
+router.put('/update/:id', auth, async (req, res) => {
     try {
         const { title, text } = req.body
         const updatedPost = { title, text }
@@ -118,7 +117,7 @@ router.put('/update/:id', auth, header, async (req, res) => {
 // @ DELETE /api/posts/delete/:id
 // Delete a post
 
-router.delete('/delete/:id', auth, header, async (req, res) => {
+router.delete('/delete/:id', auth, async (req, res) => {
     try {
         const post = await Post.findById(req.params.id)
 

@@ -40,10 +40,6 @@ export const AuthAPI = {
         const res = await instance.post('/api/auth/register', userData)
         return res.data
     },
-    async getAuth(token){
-        const res = await instance.get('/api/auth', { headers: { 'auth-token': token } })
-        return res.data
-    }
 }
 
 export const PostsAPI = {
@@ -84,5 +80,33 @@ export const CommentsAPI = {
     async create(comment, postId, token){
         const res = await instance.post(`/api/comments/create/${postId}`, comment, { headers: { 'auth-token': token } })
         return res.data
+    }
+}
+
+export const ProfileAPI = {
+    async getProfile(token){
+        const res = await instance.get('/api/profile', { headers: { 'auth-token': token } })
+        return res.data
+    },
+}
+
+export const FilesAPI = {
+    async getFiles(){
+        const res = await instance.get('/api/files')
+        return res.data
+    },
+    async uploadImage(img, token){
+        const res = await instance.post('/api/files/uploadImage', img, { 
+            headers: {
+                'Content-Type': 'multipart/form-data',
+                'auth-token': token,
+
+            } 
+        })
+
+        return res.data
+    },
+    async deleteFile(id, token){
+        await instance.delete(`/api/files/delete/${id}`, { headers: { 'auth-token': token } })
     }
 }

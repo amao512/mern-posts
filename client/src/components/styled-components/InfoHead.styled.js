@@ -18,10 +18,21 @@ export const InfoHeadStyled = styled.div`
             margin-right: 10px;
             font-size: 44px;
         }
-        img {
+        
+        .photo {
             width: 45px;
+            height: 45px;
             margin-right: 10px;
+            border-radius: 50%;
+            overflow: hidden;
+            img {
+                width: 100%;
+                height: 100%;
+                background-position: center;
+                background-size: cover;
+            }
         }
+
         .info {
             p {
                 font-size: 16px;

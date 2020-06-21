@@ -1,14 +1,13 @@
 const Router = require('express')
 const router = Router()
 const auth = require('../middleware/auth')
-const header = require('../middleware/header')
 
 const User = require('../models/User')
 
 // GET /api/user
 // Get all users
 
-router.get('/', header, async (req, res) => {
+router.get('/', async (req, res) => {
     try {
         let users = await User.find().select('-password')
 
@@ -24,7 +23,7 @@ router.get('/', header, async (req, res) => {
 // GET /api/user/:id
 // Get user by id
 
-router.get('/:id', header, async (req, res) => {
+router.get('/:id', async (req, res) => {
     try {
         const user = await User.findById(req.params.id).select('-password')
 
