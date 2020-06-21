@@ -1,5 +1,5 @@
 import { ProfileAPI } from "../../api"
-import { uploadImage, getProfileData } from "../actions/profileActions"
+import { getProfileData } from "../actions/profileActions"
 import { setAuthError } from "../actions/authActions"
 
 // Get profile data GET /api/auth/

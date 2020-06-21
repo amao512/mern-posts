@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavbarStyled } from './styled-components/navbar.styled'
+import { NavbarStyled } from './navbar.styled'
 import { NavLink } from 'react-router-dom'
 
 const Navbar = ({ profile, authLogoutThunk }) => {

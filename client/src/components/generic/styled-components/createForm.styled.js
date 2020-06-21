@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { styles } from './config'
+import { styles } from './config.styled'
 
 export const CreateForm = styled.div`
     margin-bottom: 30px;

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import { CreateForm } from '../components/styled-components/createForm.styled'
+import Preloader from '../components/generic/Preloader/Preloader'
+import { CreateForm } from '../components/generic/styled-components/createForm.styled'
 import { updatePostThunk, getPostsThunk, deletePostThunk } from '../redux/thunks/postsThunk'
 import { connect } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import Preloader from '../components/Preloader/Preloader'
 
 const Edit = ({ updatePostThunk, token, posts, getPostsThunk, deletePostThunk, ...props }) => {
     const [form, setForm] = useState({ title: '', text: '' })

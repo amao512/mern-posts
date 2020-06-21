@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { CreateForm } from '../components/styled-components/createForm.styled'
+import { CreateForm } from '../components/generic/styled-components/createForm.styled'
 import { createPostThunk } from '../redux/thunks/postsThunk'
 import { connect } from 'react-redux'
 

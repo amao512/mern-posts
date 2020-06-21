@@ -1,5 +1,5 @@
 import React from 'react'
-import { HeaderShapka } from './styled-components/header.styled'
+import { HeaderShapka } from './header.styled'
 import { NavLink } from 'react-router-dom'
 
 const Header = () => {

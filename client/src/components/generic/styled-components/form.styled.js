@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { device } from './config'
+import { device } from './config.styled'
 
 export const SignInUp = styled.div`
     max-width: 360px;

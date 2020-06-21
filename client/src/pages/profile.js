@@ -1,15 +1,15 @@
 import React, { useEffect } from 'react'
-import { ProfileBlock } from '../components/styled-components/profile.styled'
 import Posts from '../components/Posts/Posts'
+import ProfilePopup from '../components/Profile/ProfilePopup'
+import ProfileInfo from '../components/Profile/ProfileInfo'
+import Preloader from '../components/generic/Preloader/Preloader'
 import { connect } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { getPostsThunk } from '../redux/thunks/postsThunk'
 import { getProfileDataThunk } from '../redux/thunks/profileThunks'
 import { useState } from 'react'
-import Preloader from '../components/Preloader/Preloader'
 import { getFilesThunk, deleteFileThunk, uploadImgThunk } from '../redux/thunks/fileThunks'
-import UserPhoto from '../components/UserPhoto'
-import { PopUp } from '../components/styled-components/PopUp.styled'
+
 
 const Profile = ({ posts, userId, getPostsThunk, users, profile, token, uploadImgThunk, getProfileDataThunk, getFilesThunk, deleteFileThunk, files }) => {
     const [user, setUser] = useState(null)
@@ -58,51 +58,9 @@ const Profile = ({ posts, userId, getPostsThunk, users, profile, token, uploadIm
 
     return (
         <div className='profile'>
-            <ProfileBlock>
-                <div className='profile-info'>
-                    <div onClick={() => !id && setPopup(true)} className='photo'>
-                        <UserPhoto owner={user._id} />
+            <ProfileInfo id={id} setPopup={setPopup} user={user} />
 
-                        {!id && <div className='choose-img'>
-                                <span className="material-icons">create</span>
-                            </div>
-                        }
-                    </div>
-
-                    <div className='name'>
-                        <p>{`${user.name} ${user.lastName}`}</p>
-                    </div>
-                    
-                    <div className='email'>
-                        <p>{user.email}</p>
-                    </div>
-                </div>
-            </ProfileBlock>
-
-            {popup && <PopUp>
-
-                    <ul className='content'>
-                        <div className='close' onClick={() => setPopup(false)}>
-                            <span className="material-icons">close</span>
-                        </div>
-
-                        <li>
-                            <input type='file' 
-                                name='file' 
-                                id='file' 
-                                accept='image/*'
-                                onChange={fileSelectedHandler}
-                            />
-
-                            <label htmlFor='file'>Upload Image</label>
-                        </li>
-
-                        <li onClick={deletePhoto}>
-                            <p>Delete</p>
-                        </li>
-                    </ul>
-                </PopUp>
-            }
+            {popup && <ProfilePopup setPopup={setPopup} deletePhoto={deletePhoto} fileSelectedHandler={fileSelectedHandler} />}
 
             {filteredPosts && <Posts isAdmin={id === undefined} posts={filteredPosts} />}
         </div>

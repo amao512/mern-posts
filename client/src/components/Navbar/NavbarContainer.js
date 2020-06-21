@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
-import Navbar from '../components/Navbar'
+import Navbar from './Navbar'
 import { connect } from 'react-redux'
-import { authLogoutThunk } from '../redux/thunks/authThunks'
-import { getProfileDataThunk } from '../redux/thunks/profileThunks'
+import { authLogoutThunk } from '../../redux/thunks/authThunks'
+import { getProfileDataThunk } from '../../redux/thunks/profileThunks'
 
 const NavbarContainer = ({ profile, authLogoutThunk, getAuthDataThunk }) => {
 
