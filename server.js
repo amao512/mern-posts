@@ -2,11 +2,12 @@ const express = require('express')
 const mongoose = require('mongoose')
 const config = require('config')
 const path = require('path')
+const bodyParser = require('body-parser')
 
 const app = express()
 const PORT = process.env.PORT || 5000
 
-app.use(express.json({ extended: true }))
+app.use(bodyParser.json())
 
 const connectDB = async () => {
     try {

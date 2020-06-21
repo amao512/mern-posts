@@ -11,12 +11,13 @@
     "dev": "cross-env NODE_ENV=development concurrently \"npm run server\" \"npm run client\"",
     "build": "cd client && npm run build",
     "client-install": "cd client && npm install",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+    "heroku-postbuild": "npm install --prefix client && npm run build --prefix client"
   },
   "author": "Asylzhan Seytbek <asyl.zed.han@gmail.com>",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
     "config": "^3.3.1",
     "cross-env": "^7.0.2",
     "crypto-js": "^4.0.0",
