@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { styles } from './config'
+import { styles } from '../generic/styled-components/config.styled'
 
 export const ProfileBlock = styled.div`
     margin-top: 90px;

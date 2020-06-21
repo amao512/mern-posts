@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
-import { connect } from 'react-redux'
-import PostContainer from '../containers/PostContainer'
-import { getOnePostThunk } from '../redux/thunks/postsThunk'
-import Preloader from '../components/Preloader/Preloader'
+import PostContainer from '../components/Posts/PostContainer'
+import Preloader from '../components/generic/Preloader/Preloader'
 import Comments from '../components/Comments/Comments'
 import { getCommentsThunk } from '../redux/thunks/commentsThunk'
+import { getOnePostThunk } from '../redux/thunks/postsThunk'
+import { useParams } from 'react-router-dom'
+import { connect } from 'react-redux'
 
 const SinglePost = ({ posts, getOnePostThunk, comments, getCommentsThunk }) => {  
     const postId = useParams().postId

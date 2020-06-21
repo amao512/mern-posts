@@ -1,9 +1,8 @@
 import React, { memo, useState, useEffect } from 'react'
+import PostContainer from './PostContainer'
 import { NavLink } from 'react-router-dom'
-import PostContainer from '../../containers/PostContainer'
-import Preloader from '../Preloader/Preloader'
+import { Search } from '../generic/styled-components/search.styled'
 import s from './posts.module.css'
-import { Search } from '../styled-components/search.styled'
 
 const Posts = memo(({ posts, isAdmin = true }) => {
 
@@ -18,10 +17,6 @@ const Posts = memo(({ posts, isAdmin = true }) => {
     useEffect(() => {
         setFoundPosts(posts)
     }, [posts])
-
-    if(!foundPosts){
-        return <Preloader />
-    }
 
     return (
         <div className={s.posts}>

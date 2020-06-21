@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import UsersList from '../components/UsersList/UsersList'
+import Preloader from '../components/generic/Preloader/Preloader'
 import { connect } from 'react-redux'
 
 
@@ -19,6 +20,10 @@ const Users = ({ users, userId }) => {
     useEffect(() => {
         setFilteredUsers(users && users.filter(user => user._id !== userId))
     }, [users, userId])
+
+    if(!users){
+        return <Preloader />
+    }
 
     return <UsersList users={filteredUsers} onSearch={onSearch} />
 }

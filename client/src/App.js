@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react'
 import './App.css'
-import Header from './components/Header'
-import NavbarContainer from './containers/NavbarContainer'
-import { connect } from 'react-redux'
-import { getAuthStorageThunk } from './redux/thunks/authThunks'
-import Routes from './components/Routes'
+import Header from './components/Header/Header'
+import NavbarContainer from './components/Navbar/NavbarContainer'
+import Routes from './components/Routes/Routes'
 import { getUsersThunk } from './redux/thunks/usersThunk'
 import { getPostsThunk } from './redux/thunks/postsThunk'
 import { getProfileDataThunk } from './redux/thunks/profileThunks'
+import { getAuthStorageThunk } from './redux/thunks/authThunks'
+import { connect } from 'react-redux'
 
 const App = ({ isAuth, getAuthStorageThunk, getUsersThunk, getPostsThunk, getProfileDataThunk }) => {
 

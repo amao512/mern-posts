@@ -1,11 +1,10 @@
 import React from 'react'
-import { UserCard } from '../styled-components/UserCard'
-import UserImg from '../../assets/images/profile.png'
 import s from './users.module.css'
-import Preloader from '../Preloader/Preloader'
+import Preloader from '../generic/Preloader/Preloader'
+import UserPhoto from '../generic/UserPhoto/UserPhoto'
 import { NavLink } from 'react-router-dom'
-import { Search } from '../styled-components/search.styled'
-import UserPhoto from '../UserPhoto'
+import { Search } from '../generic/styled-components/search.styled'
+import { UserCard } from './user.styled'
 
 const UsersList = ({ users, onSearch }) => {
     return (

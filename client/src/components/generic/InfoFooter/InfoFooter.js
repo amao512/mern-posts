@@ -1,5 +1,5 @@
 import React from 'react'
-import { InfoFooterStyled } from '../styled-components/InfoFooter.styled'
+import { InfoFooterStyled } from './InfoFooter.styled'
 import { NavLink } from 'react-router-dom'
 
 const InfoFooter = ({ info, comments }) => {

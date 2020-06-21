@@ -1,7 +1,7 @@
 import React from 'react'
-import { InfoHeadStyled } from '../styled-components/InfoHead.styled'
+import UserPhoto from '../UserPhoto/UserPhoto'
+import { InfoHeadStyled } from './InfoHead.styled'
 import { NavLink } from 'react-router-dom'
-import UserPhoto from '../UserPhoto'
 
 const InfoHead = ({ isAdmin, user, info, onDelete }) => {
     return (

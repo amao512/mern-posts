@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import s from './comments.module.scss'
-import Comment from '../Comment'
+import Comment from './Comment'
 import { connect } from 'react-redux'
 import { createCommentThunk, getCommentsThunk } from '../../redux/thunks/commentsThunk'
 

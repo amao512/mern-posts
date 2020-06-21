@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react'
+import Post from './Post'
 import { connect } from 'react-redux'
-import { deletePostThunk } from '../redux/thunks/postsThunk'
-import Post from '../components/Post'
-import Preloader from '../components/Preloader/Preloader'
-import { getCommentsThunk } from '../redux/thunks/commentsThunk'
+import { deletePostThunk } from '../../redux/thunks/postsThunk'
+import { getCommentsThunk } from '../../redux/thunks/commentsThunk'
 
 const PostContainer = ({ post, users, deletePostThunk, token, userId, isReading = false, comments, getCommentsThunk }) => {
     const [user, setUser] = useState(null)
@@ -24,10 +23,6 @@ const PostContainer = ({ post, users, deletePostThunk, token, userId, isReading 
     useEffect(() => {
         getCommentsThunk()
     }, [getCommentsThunk])
-
-    if(!post){
-        return <Preloader />
-    }
 
     return <Post post={post} 
                  isAdmin={post.owner === userId} 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { CommentStyled } from './styled-components/Comment.styled'
-import InfoHead from './common/InfoHead'
+import InfoHead from '../generic/InfoHead/InfoHead'
+import { CommentStyled } from './comment.styled'
 import { connect } from 'react-redux'
 
 const Comment = ({ comment, userId, users }) => {
