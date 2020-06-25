@@ -9,8 +9,7 @@ export const InfoFooterStyled = styled.div`
     align-items: center;
     
     .views,
-    .comments,
-    div {
+    .comments {
         display: flex;
         flex-direction: center;
         align-items: center;

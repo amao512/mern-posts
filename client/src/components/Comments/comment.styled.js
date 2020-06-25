@@ -8,7 +8,6 @@ export const CommentStyled = styled.div`
     border-top: 1px solid #222;
 
     @media (max-width: 768px){
-        border: none;
         border-radius: 0;
         margin-bottom: 10px;
         padding: 5px 15px;
@@ -16,7 +15,8 @@ export const CommentStyled = styled.div`
     
     .comment {
         font-size: 16px;
-        padding-bottom: 10px;
-        margin-left: 15px;
+        padding: 0 15px 10px;
+        border-bottom: 1px solid #d3d3d3;
+        margin-bottom: 10px;
     }
 `

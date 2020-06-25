@@ -1,30 +1,22 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import InfoHead from '../generic/InfoHead/InfoHead'
 import LikeDislikeContainer from '../LikeDislike/LikeDislikeContainer'
 import { CommentStyled } from './comment.styled'
-import { connect } from 'react-redux'
 
-const Comment = ({ comment, userId, users }) => {
-    const [owner, setOwner] = useState(null)
-
-    useEffect(() => {
-        setOwner(users && users.find(user => user._id === comment.owner))
-    }, [users, comment])
-
+const Comment = ({ comment, userId, owner, likes, dislikes, onDelete }) => {
     return (
         <CommentStyled>
-            <InfoHead isAdmin={comment.owner === userId} user={owner} info={comment} onDelete={() => {}} />
+            <InfoHead isAdmin={comment.owner === userId} user={owner} info={comment} onDelete={onDelete} />
             
             <p className='comment'>{comment.text}</p>
 
-            <LikeDislikeContainer />
+            <LikeDislikeContainer infoId={comment._id} 
+                                  comment={true}
+                                  likes={likes}
+                                  dislikes={dislikes}
+            />
         </CommentStyled>
     )
 }
 
-const mstp = state => ({
-    userId: state.auth.userId,
-    users: state.user.users
-})
-
-export default connect(mstp)(Comment)
+export default Comment

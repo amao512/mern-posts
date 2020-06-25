@@ -12,3 +12,7 @@ export const createCommentThunk = (comment, postId, token) => async dispatch => 
 
     return dispatch(addComment(data))
 }
+
+export const deleteCommentThunk = (commentId, token) => async () => {
+    await CommentsAPI.delete(commentId, token)
+}

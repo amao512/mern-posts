@@ -11,6 +11,10 @@ const PostContainer = ({ post, users, deletePostThunk, token, userId, isReading 
     const [certainLikes, setCertainLikes] = useState([])
     const [certainDislikes, setCertainDislikes] = useState([])
 
+    const onDeletePost = () => {
+        deletePostThunk(post._id, token)
+    }
+
     useEffect(() => {
         getLikesThunk()
         getDislikesThunk()
@@ -20,10 +24,6 @@ const PostContainer = ({ post, users, deletePostThunk, token, userId, isReading 
         setCertainLikes(likes.filter(like => like.postId === post._id))
         setCertainDislikes(dislikes.filter(dislike => dislike.postId === post._id))
     }, [likes, post])
-
-    const onDeletePost = () => {
-        deletePostThunk(post._id, token)
-    }
 
     useEffect(() => {
         setUser(users && users.find(user => user._id === post.owner))

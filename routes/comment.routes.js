@@ -41,6 +41,31 @@ router.post('/create/:postId', auth, async (req, res) => {
     }
 })
 
+router.put('/edit/:commentId', auth, async (req, res) => {
+    try {
+        let comment = await Comment.findById(req.params.commentId)
+
+        if(!comment){
+            return res.status(404).json({ message: 'Comment Not Found' })
+        }
+
+        const newPost = {
+            post: req.body.postId,
+            owner: req.user.userId,
+            text: req.body.text
+        }
+
+        comment = await Comment.findByIdAndUpdate(req.params.commentId, { $set: newPost }, { new: true })
+
+        await comment.save()
+
+        res.json({ message: 'Comment updated successfully' })
+    } catch (e) {
+        console.log(e.message)
+        res.status(500).json({ message: 'Server Error: Something is wrong!' })
+    }
+})
+
 // @ DELETE /api/comments/delete/:commentId
 
 router.delete('/delete/:commentId', auth, async (req, res) => {

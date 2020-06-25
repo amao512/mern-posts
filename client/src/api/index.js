@@ -54,6 +54,9 @@ export const CommentsAPI = {
     async create(comment, postId, token){
         const res = await instance.post(`/api/comments/create/${postId}`, comment, { headers: { 'auth-token': token } })
         return res.data
+    },
+    async delete(commentId, token){
+        await instance.delete(`/api/comments/delete/${commentId}`, { headers: { 'auth-token': token } })
     }
 }
 

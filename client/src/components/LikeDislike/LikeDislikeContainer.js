@@ -8,7 +8,7 @@ const LikeDislikeContainer = ({ userId, token, likes, dislikes, infoId, upLikeTh
     const [disliked, setDisliked] = useState(false)
 
     const onLike = async () => {
-        const body = post && { postId: infoId }
+        const body = post ? { postId: infoId } : { commentId: infoId }
 
         if(liked){
             await unLikeThunk(body, token)
@@ -22,7 +22,7 @@ const LikeDislikeContainer = ({ userId, token, likes, dislikes, infoId, upLikeTh
     }
 
     const onDislike = async () => {
-        const body = post && { postId: infoId }
+        const body = post ? { postId: infoId } : { commentId: infoId }
 
         if(disliked){
             await unDislikeThunk(body, token)
@@ -44,8 +44,6 @@ const LikeDislikeContainer = ({ userId, token, likes, dislikes, infoId, upLikeTh
         const dislike = dislikes.find(dislike => dislike.userId === userId)
         setDisliked(!!dislike)
     }, [userId, dislikes])
-
-    console.log(liked)
 
     return <LikeDislike liked={liked} 
                         disliked={disliked} 

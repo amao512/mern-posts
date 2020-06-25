@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import s from './comments.module.scss'
-import Comment from './Comment'
+import CommentContainer from './CommentContainer'
 import { connect } from 'react-redux'
 import { createCommentThunk, getCommentsThunk } from '../../redux/thunks/commentsThunk'
 
@@ -34,7 +34,7 @@ const Comments = ({ comments, postId, token, createCommentThunk, getCommentsThun
             <div className={s.commentsBlock}>
                 {comments.length === 0 ? <div>There is no any kind of comments</div> 
                     : comments.map(comment => (
-                        <Comment key={comment._id} comment={comment} />
+                        <CommentContainer key={comment._id} comment={comment} />
                     )
                 )}
             </div>
