@@ -32,9 +32,9 @@ const Comments = ({ comments, postId, token, createCommentThunk, getCommentsThun
             </form>
 
             <div className={s.commentsBlock}>
-                {comments.length === 0 ? <div>There is no any kind of comments</div> 
+                {comments.length === 0 ? <div className={s.noComments}>There is no any kind of comments</div> 
                     : comments.map(comment => (
-                        <CommentContainer key={comment._id} comment={comment} />
+                        <CommentContainer key={comment._id} comment={comment} postId={postId} />
                     )
                 )}
             </div>

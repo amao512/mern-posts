@@ -28,7 +28,7 @@
         }
 
         button {
-            justify-self: end;
+            width: 100%;
             padding: 6px 16px;
             background-color: #222;
             color: #fff;
@@ -42,5 +42,10 @@
                 color: #222;
             }
         }
+    }
+
+    .noComments {
+        text-align: center;
+        padding: 10px;
     }
 }

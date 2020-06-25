@@ -20,7 +20,7 @@ const Post = ({ post, admin, isAdmin, user, onDeletePost, isReading, comments, l
 
             <p className='text'>{post.text}</p>
 
-            <InfoFooter likes={likes} dislikes={dislikes} info={post} comments={comments} />
+            <InfoFooter likes={likes} dislikes={dislikes} info={post} comments={comments}/>
         </PostCard>
     )
 }

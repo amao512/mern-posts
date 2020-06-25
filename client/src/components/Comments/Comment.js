@@ -3,12 +3,17 @@ import InfoHead from '../generic/InfoHead/InfoHead'
 import LikeDislikeContainer from '../LikeDislike/LikeDislikeContainer'
 import { CommentStyled } from './comment.styled'
 
-const Comment = ({ comment, userId, owner, likes, dislikes, onDelete }) => {
+const Comment = ({ comment, userId, owner, likes, dislikes, onDelete, editing, editingText, onEdit, setEditingText, onUpdate }) => {
     return (
         <CommentStyled>
-            <InfoHead isAdmin={comment.owner === userId} user={owner} info={comment} onDelete={onDelete} />
+            <InfoHead comment onEdit={onEdit} isAdmin={comment.owner === userId} user={owner} info={comment} onDelete={onDelete} />
             
-            <p className='comment'>{comment.text}</p>
+            {!editing && <p className='comment'>{comment.text}</p>}
+            {editing && <div className='editing'>
+                    <textarea onChange={e => setEditingText(e.target.value)} value={editingText}/>
+                    <button onClick={onUpdate}>Save</button>
+                </div>
+            }
 
             <LikeDislikeContainer infoId={comment._id} 
                                   comment={true}

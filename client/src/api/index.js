@@ -57,6 +57,9 @@ export const CommentsAPI = {
     },
     async delete(commentId, token){
         await instance.delete(`/api/comments/delete/${commentId}`, { headers: { 'auth-token': token } })
+    },
+    async update(commentId, postId, text, token){
+        await instance.put(`/api/comments/edit/${commentId}`, { postId, text }, { headers: { 'auth-token': token } })
     }
 }
 

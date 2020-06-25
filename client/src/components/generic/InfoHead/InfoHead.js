@@ -3,7 +3,7 @@ import UserPhoto from '../UserPhoto/UserPhoto'
 import { InfoHeadStyled } from './InfoHead.styled'
 import { NavLink } from 'react-router-dom'
 
-const InfoHead = ({ isAdmin, user, info, onDelete }) => {
+const InfoHead = ({ isAdmin, user, info, onDelete, comment, onEdit }) => {
     return (
         <InfoHeadStyled>
             <div className='author'>
@@ -26,9 +26,15 @@ const InfoHead = ({ isAdmin, user, info, onDelete }) => {
                 {isAdmin && <span className='material-icons'>drag_indicator</span>}
 
                 <ul>
-                    <NavLink to={`/edit/${info._id}`}>
-                        <li>Edit</li>  
-                    </NavLink>
+                    {!comment ? (
+                            <NavLink to={`/edit/${info._id}`}>
+                                <li>Edit</li>  
+                            </NavLink>
+                        )
+                        : (
+                            <li onClick={onEdit}>Edit</li>
+                        )
+                    }
                     
                     <li onClick={onDelete}>Delete</li>
                 </ul>
