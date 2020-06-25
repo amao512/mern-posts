@@ -87,13 +87,13 @@ export const FilesAPI = {
 
 export const LikeDislikeAPI = {
     // body = { postId or commentId }
-    async getLikes(body){
-        const res = await instance.post('/api/likeDislike/getLikes', body)
+    async getLikes(){
+        const res = await instance.get('/api/likeDislike/getLikes')
         return res.data
     },
 
-    async getDislikes(body){
-        const res = await instance.post('/api/likeDislike/getDislikes', body)
+    async getDislikes(){
+        const res = await instance.get('/api/likeDislike/getDislikes')
         return res.data
     },
 

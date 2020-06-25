@@ -21,3 +21,6 @@ export const GET_PROFILE_DATA = 'GET_PROFILE_DATA'
 export const GET_FILES = 'GET_FILES'
 export const DELETE_FILE = 'DELETE_FILE'
 export const UPLOAD_IMAGE = 'UPLOAD_IMAGE'
+
+export const GET_LIKES = 'GET_LIKES'
+export const GET_DISLIKES = 'GET_DISLIKES'

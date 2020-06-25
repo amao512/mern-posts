@@ -7,17 +7,10 @@ const Dislike = require('../models/Dislike')
 
 // @ GET /api/likeDislike/getLikes
 // @ Get likes
-router.post('/getLikes', async (req, res) => {
+router.get('/getLikes', async (req, res) => {
     try {
-        let variable = {}
 
-        if(req.body.postId){
-            variable = { postId: req.body.postId }
-        } else {
-            variable = { commentId: req.body.commentId }
-        }
-
-        const likes = await Like.find(variable)
+        const likes = await Like.find()
 
         if(!likes){
             return res.status(400).json({ message: 'Likes Not Found' })
@@ -33,17 +26,10 @@ router.post('/getLikes', async (req, res) => {
 
 // @ GET /api/likeDislike/getDislikes
 // @ Get dislikes
-router.post('/getDislikes', async (req, res) => {
+router.get('/getDislikes', async (req, res) => {
     try {
-        let variable = {}
-
-        if(req.body.postId){
-            variable = { postId: req.body.postId }
-        } else {
-            variable = { commentId: req.body.commentId }
-        }
         
-        const dislikes = await Dislike.find(variable)
+        const dislikes = await Dislike.find()
 
         res.json(dislikes)
     } catch (e) {
@@ -145,7 +131,7 @@ router.post('/unDislike', auth, async (req, res) => {
         const dislike = await Dislike.findOne(variable)
 
         if(!dislike){
-            return res.status(400).json({ message: 'Like Not Found' })
+            return res.status(400).json({ message: 'Dislike Not Found' })
         }
 
         await dislike.remove()

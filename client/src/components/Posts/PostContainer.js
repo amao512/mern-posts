@@ -3,10 +3,23 @@ import Post from './Post'
 import { connect } from 'react-redux'
 import { deletePostThunk } from '../../redux/thunks/postsThunk'
 import { getCommentsThunk } from '../../redux/thunks/commentsThunk'
+import { getLikesThunk, getDislikesThunk } from '../../redux/thunks/likesDislikesThunk'
 
-const PostContainer = ({ post, users, deletePostThunk, token, userId, isReading = false, comments, getCommentsThunk }) => {
+const PostContainer = ({ post, users, deletePostThunk, token, userId, isReading = false, comments, getCommentsThunk, likes, getLikesThunk, getDislikesThunk, dislikes }) => {
     const [user, setUser] = useState(null)
     const [certainComments, setCertainComments] = useState([])
+    const [certainLikes, setCertainLikes] = useState([])
+    const [certainDislikes, setCertainDislikes] = useState([])
+
+    useEffect(() => {
+        getLikesThunk()
+        getDislikesThunk()
+    }, [getLikesThunk, getDislikesThunk])
+
+    useEffect(() => {
+        setCertainLikes(likes.filter(like => like.postId === post._id))
+        setCertainDislikes(dislikes.filter(dislike => dislike.postId === post._id))
+    }, [likes, post])
 
     const onDeletePost = () => {
         deletePostThunk(post._id, token)
@@ -30,6 +43,8 @@ const PostContainer = ({ post, users, deletePostThunk, token, userId, isReading 
                  onDeletePost={onDeletePost} 
                  isReading={isReading}
                  comments={certainComments}
+                 likes={certainLikes}
+                 dislikes={certainDislikes}
             />
 }
 
@@ -37,7 +52,9 @@ const mstp = state => ({
     token: state.auth.token,
     users: state.user.users,
     userId: state.auth.userId,
-    comments: state.comment.comments
+    comments: state.comment.comments,
+    likes: state.likesDislikes.likes,
+    dislikes: state.likesDislikes.dislikes
 })
 
-export default connect(mstp, { deletePostThunk, getCommentsThunk })(PostContainer)
+export default connect(mstp, { deletePostThunk, getCommentsThunk, getLikesThunk, getDislikesThunk })(PostContainer)

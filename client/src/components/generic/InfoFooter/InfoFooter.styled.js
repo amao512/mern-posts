@@ -4,12 +4,13 @@ export const InfoFooterStyled = styled.div`
     border-top: 1px solid #222;
     padding: 10px 0;
     display: grid;
-    grid-template-columns: .1fr 1fr;
+    grid-template-columns: .2fr .1fr 1fr;
     grid-gap: 15px;
     align-items: center;
     
     .views,
-    .comments {
+    .comments,
+    div {
         display: flex;
         flex-direction: center;
         align-items: center;
@@ -27,5 +28,8 @@ export const InfoFooterStyled = styled.div`
         p { 
             font-size: 13px; 
         }
+    }
+    .views {
+        justify-self: end;
     }
 `

@@ -6,6 +6,7 @@ import { usersReducer } from './reducers/usersReducer'
 import { commentsReducer } from './reducers/commentsReducer'
 import { profileReducer } from './reducers/profileReducer'
 import { fileReducer } from './reducers/fileReducer'
+import { likesDislikesReducer } from './reducers/likesDislikesReducer'
 
 const reducers = combineReducers({
     auth: authReducer,
@@ -13,7 +14,8 @@ const reducers = combineReducers({
     user: usersReducer,
     comment: commentsReducer,
     profile: profileReducer,
-    file: fileReducer
+    file: fileReducer,
+    likesDislikes: likesDislikesReducer
 })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
