@@ -11,7 +11,7 @@ const Grid = require('gridfs-stream')
 const UserPhoto = require('../models/UserPhoto')
 
 // Create mongo connection
-const conn = mongoose.createConnection(config.get('mongoUri'), { useNewUrlParser: true, useUnifiedTopology: true })
+const conn = mongoose.createConnection(config.get('mongoUri'), { useNewUrlParser: true })
 
 // Init gfs
 let gfs
@@ -41,7 +41,7 @@ const storage = new GridFsStorage({
                 resolve(fileInfo)
             })
         })
-    },
+    }
 })
 
 const upload = multer({ storage })

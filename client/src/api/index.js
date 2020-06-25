@@ -1,30 +1,4 @@
 import axios from 'axios'
-// const request = async (url, method, body = null, headers = {}, token = null) => {
-//     try {
-//         headers['Content-Type'] = 'application/json'
-
-//         if(body){
-//             body = JSON.stringify(body)
-//             headers['Content-Type'] = 'application/json'
-//         }
-
-//         if(token){
-//             headers['Content-Type'] = 'application/json'
-//             headers['auth-token'] = token
-//         }
-
-//         const res = await fetch(url, { method, body, headers })
-//         const data = await res.json()
-
-//         if(!res.ok){
-//             throw new Error(data.message)
-//         }
-        
-//         return data
-//     } catch (e) {
-//         return e
-//     }
-// }
 
 const instance = axios.create({
     baseUrl: 'http://localhost:5000',
@@ -108,5 +82,38 @@ export const FilesAPI = {
     },
     async deleteFile(id, token){
         await instance.delete(`/api/files/delete/${id}`, { headers: { 'auth-token': token } })
+    }
+}
+
+export const LikeDislikeAPI = {
+    // body = { postId or commentId }
+    async getLikes(body){
+        const res = await instance.post('/api/likeDislike/getLikes', body)
+        return res.data
+    },
+
+    async getDislikes(body){
+        const res = await instance.post('/api/likeDislike/getDislikes', body)
+        return res.data
+    },
+
+    async upLike(body, token){
+        const res = await instance.post('/api/likeDislike/upLike', body, { headers: { 'auth-token': token } })
+        return res.data
+    },
+
+    async unLike(body, token){
+        const res = await instance.post('/api/likeDislike/unLike', body, { headers: { 'auth-token': token } })
+        return res.data
+    },
+
+    async upDislike(body, token){
+        const res = await instance.post('/api/likeDislike/upDislike', body, { headers: { 'auth-token': token } })
+        return res.data
+    },
+
+    async unDislike(body, token){
+        const res = await instance.post('/api/likeDislike/unDislike', body, { headers: { 'auth-token': token } })
+        return res.data
     }
 }

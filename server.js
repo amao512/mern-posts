@@ -2,7 +2,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const path = require('path')
 const bodyParser = require('body-parser')
-require('dotenv').config()
+const config = require('config')
 
 const app = express()
 const PORT = process.env.PORT || 5000
@@ -11,7 +11,7 @@ app.use(bodyParser.json())
 
 const connectDB = async () => {
     try {
-        await mongoose.connect(process.env.MONGO_URI, {
+        await mongoose.connect(config.get('mongoUri')  /* process.env.MONGO_URI */, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
             useCreateIndex: true,
@@ -46,3 +46,4 @@ app.use('/api/user', require('./routes/user.routes'))
 app.use('/api/comments', require('./routes/comment.routes'))
 app.use('/api/profile', require('./routes/profile.routes'))
 app.use('/api/files', require('./routes/file.routes'))
+app.use('/api/likeDislike', require('./routes/likeDislike.routes'))
