@@ -41,4 +41,11 @@ export const UserCard = styled.div`
             font-size: 12px;
         }
     }
+
+    .info {
+        padding: 0 10px;
+        p {
+            font-size: 10px;
+        }
+    }
 `

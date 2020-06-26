@@ -14,11 +14,19 @@ const Post = ({ post, admin, isAdmin, user, onDeletePost, isReading, comments, l
                     <NavLink to={`/p/${post._id}`}>
                         {post.title}
                     </NavLink>
-                    ) : `${post.title}`
+                    ) : (
+                        `${post.title}`)
                 }
             </h1>
 
-            <p className='text'>{post.text}</p>
+            {!isReading && <p className='text'>{post.text.length > 375 ? (
+                    `${post.text.slice(0, 375)}...`
+                    ) : (
+                        `${post.text}`
+                    )
+                }</p>
+            }
+            {isReading && <p className='text'>{post.text}</p>}
 
             <InfoFooter likes={likes} dislikes={dislikes} info={post} comments={comments}/>
         </PostCard>

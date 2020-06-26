@@ -8,10 +8,10 @@ import { useParams } from 'react-router-dom'
 import { getPostsThunk } from '../redux/thunks/postsThunk'
 import { getProfileDataThunk } from '../redux/thunks/profileThunks'
 import { useState } from 'react'
-import { getFilesThunk, deleteFileThunk, uploadImgThunk } from '../redux/thunks/fileThunks'
+import { deleteFileThunk, uploadImgThunk } from '../redux/thunks/fileThunks'
 
 
-const Profile = ({ posts, userId, getPostsThunk, users, profile, token, uploadImgThunk, getProfileDataThunk, getFilesThunk, deleteFileThunk, files }) => {
+const Profile = ({ posts, userId, getPostsThunk, users, profile, token, uploadImgThunk, getProfileDataThunk, deleteFileThunk, files }) => {
     const [user, setUser] = useState(null)
     const [filteredPosts, setFilteredPosts] = useState([])
     const [popup, setPopup] = useState(false)
@@ -77,4 +77,4 @@ const mstp = state => ({
     files: state.file.files
 })
 
-export default connect(mstp, { getPostsThunk, uploadImgThunk, getProfileDataThunk, getFilesThunk, deleteFileThunk })(Profile)
+export default connect(mstp, { getPostsThunk, uploadImgThunk, getProfileDataThunk, deleteFileThunk })(Profile)

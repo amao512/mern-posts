@@ -41,7 +41,7 @@ const CommentContainer = ({ comment, userId, postId, users, getLikesThunk, getDi
     useEffect(() => {
         setCertainLikes(likes.filter(like => like.commentId === comment._id))
         setCertainDislikes(dislikes.filter(dislike => dislike.commentId === comment._id))
-    }, [likes, comment])
+    }, [likes, comment, dislikes])
 
     return <Comment userId={userId} 
                     comment={comment} 

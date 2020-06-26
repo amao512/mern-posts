@@ -23,7 +23,7 @@ const PostContainer = ({ post, users, deletePostThunk, token, userId, isReading 
     useEffect(() => {
         setCertainLikes(likes.filter(like => like.postId === post._id))
         setCertainDislikes(dislikes.filter(dislike => dislike.postId === post._id))
-    }, [likes, post])
+    }, [likes, post, dislikes])
 
     useEffect(() => {
         setUser(users && users.find(user => user._id === post.owner))
