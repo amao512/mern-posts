@@ -1,6 +1,6 @@
 {
   "name": "mern-posts",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "This project was created by using MERN stack",
   "main": "server.js",
   "scripts": {
