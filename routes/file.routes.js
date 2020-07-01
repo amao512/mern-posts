@@ -2,7 +2,7 @@ const Router = require('express')
 const router = Router()
 const auth = require('../middleware/auth')
 const multer = require('multer')
-const GridFsStorage = require('multer-gridfs-storage')
+const GridFSBucket = require('multer-gridfs-storage')
 const config = require('config')
 const crypto = require('crypto')
 const mongoose = require('mongoose')
@@ -24,7 +24,7 @@ conn.once('open', () => {
 
 // ------------------------------------------------------------------------ //
 // Create storage engine
-const storage = new GridFsStorage({
+const storage = new GridFSBucket({
     url: config.get('mongoUri'),
     file: (req, file) => {
         return new Promise((resolve, reject) => {

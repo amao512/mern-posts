@@ -29,10 +29,15 @@
     color: #222;
 }
 
+.noPosts {
+  text-align: center;
+  padding: 10px;
+}
+
 @media screen and (max-width: 768px){
   .posts {
     padding: 0;
-    margin-bottom: 25px;
+    margin-bottom: 35px;
   }
 
   .postsCreate {

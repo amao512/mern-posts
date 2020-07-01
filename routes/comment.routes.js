@@ -41,6 +41,9 @@ router.post('/create/:postId', auth, async (req, res) => {
     }
 })
 
+// @ PUT /api/comments/edit/:commentId
+// Update a comment
+
 router.put('/edit/:commentId', auth, async (req, res) => {
     try {
         let comment = await Comment.findById(req.params.commentId)
@@ -67,6 +70,7 @@ router.put('/edit/:commentId', auth, async (req, res) => {
 })
 
 // @ DELETE /api/comments/delete/:commentId
+// Delete a comment
 
 router.delete('/delete/:commentId', auth, async (req, res) => {
     try {

@@ -10,11 +10,11 @@ const User = ({ user, posts, getPostsThunk }) => {
 
     useEffect(() => {
         getPostsThunk()
-    }, [])
+    }, [getPostsThunk])
 
     useEffect(() => {
         setUserPosts(posts && posts.filter(post => post.owner === user._id))
-    }, [getPostsThunk])
+    }, [getPostsThunk, posts, user])
 
     return (
         <UserCard key={user && user._id}>

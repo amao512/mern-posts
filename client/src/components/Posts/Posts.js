@@ -28,8 +28,8 @@ const Posts = memo(({ posts, isAdmin = true }) => {
                 </div>
             }
 
-            {foundPosts === null 
-                ? <div className='no-posts'>There is no any kind of posts</div> 
+            {foundPosts.length === 0 
+                ? <div className={s.noPosts}>There is no any kind of posts</div> 
                 : foundPosts.map(post => (
                     <PostContainer key={post._id} post={post} />
                 ))

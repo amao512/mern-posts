@@ -5,8 +5,9 @@ import { Error } from '../components/Auth/error.styled'
 import { connect } from 'react-redux'
 import { authRegisterThunk } from '../redux/thunks/authThunks'
 import { clearAuthError } from '../redux/actions/authActions'
+import { getProfileDataThunk } from '../redux/thunks/profileThunks'
 
-const Register = ({ authRegisterThunk, error, clearAuthError, isAuth, ...props }) => {
+const Register = ({ authRegisterThunk, error, clearAuthError, isAuth, getProfileDataThunk, ...props }) => {
     const [form, setForm] = useState({ name: '', lastName: '', email: '', password: '', confirmPassword: '' })
     const [formError, setFormError] = useState(null)
 
@@ -27,6 +28,7 @@ const Register = ({ authRegisterThunk, error, clearAuthError, isAuth, ...props }
         setFormError(null)
 
         authRegisterThunk(form)
+        getProfileDataThunk()
 
         if(isAuth){
             props.history.push('/feed')
@@ -97,4 +99,4 @@ const mstp = state => ({
     isAuth: state.auth.isAuth
 })
 
-export default connect(mstp, { authRegisterThunk, clearAuthError })(Register)
+export default connect(mstp, { authRegisterThunk, clearAuthError, getProfileDataThunk })(Register)

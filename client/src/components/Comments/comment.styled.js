@@ -9,7 +9,7 @@ export const CommentStyled = styled.div`
 
     @media (max-width: 768px){
         border-radius: 0;
-        margin-bottom: 10px;
+        margin-bottom: 30px;
         padding: 5px 15px;
     }
     
